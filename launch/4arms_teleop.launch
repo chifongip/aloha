@@ -19,6 +19,14 @@
   <arg name="robot_name_master_right"           value="master_right"/>
   <arg name="robot_name_puppet_right"           value="puppet_right"/>
 
+  <arg name="use_aloha_rviz"                    default="true"/>
+  <arg name="rvizconfig"                        default="$(find aloha)/rviz/aloha.rviz" />
+
+  <node if="$(arg use_aloha_rviz)"
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(arg rvizconfig)"/>
 
   <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
     <arg name="robot_model"                       value="$(arg robot_model_master)"/>
@@ -30,7 +38,7 @@
     <arg name="use_sim"                           value="$(arg use_sim)"/>
   </include>
 
-  <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
+  <!-- <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
     <arg name="robot_model"                       value="$(arg robot_model_master)"/>
     <arg name="robot_name"                        value="$(arg robot_name_master_right)"/>
     <arg name="base_link_frame"                   value="$(arg base_link_master)"/>
@@ -38,7 +46,7 @@
     <arg name="use_rviz"                          value="false"/>
     <arg name="mode_configs"                      value="$(arg master_modes_right)"/>
     <arg name="use_sim"                           value="$(arg use_sim)"/>
-  </include>
+  </include> -->
 
 
   <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
@@ -51,7 +59,7 @@
     <arg name="use_sim"                           value="$(arg use_sim)"/>
   </include>
 
-  <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
+  <!-- <include if="$(arg launch_driver)" file="$(find interbotix_xsarm_control)/launch/xsarm_control.launch">
     <arg name="robot_model"                       value="$(arg robot_model_puppet)"/>
     <arg name="robot_name"                        value="$(arg robot_name_puppet_right)"/>
     <arg name="base_link_frame"                   value="$(arg base_link_puppet)"/>
@@ -59,21 +67,20 @@
     <arg name="use_rviz"                          value="false"/>
     <arg name="mode_configs"                      value="$(arg puppet_modes_right)"/>
     <arg name="use_sim"                           value="$(arg use_sim)"/>
-  </include>
+  </include> -->
 
 
   <node
     name="master_left_transform_broadcaster"
     pkg="tf2_ros"
     type="static_transform_publisher"
-    args="0 -0.25 0 0 0 0 /world /$(arg robot_name_master_left)/base_link"/>
+    args="0 -0.75 0 0 0 0 /world /$(arg robot_name_master_left)/base_link"/>
 
-   <node
+  <!-- <node
     name="master_right_transform_broadcaster"
     pkg="tf2_ros"
     type="static_transform_publisher"
-    args="0 -0.25 0 0 0 0 /world /$(arg robot_name_master_right)/base_link"/>
-
+    args="0 -0.25 0 0 0 0 /world /$(arg robot_name_master_right)/base_link"/> -->
 
   <node
     name="puppet_left_transform_broadcaster"
@@ -81,13 +88,13 @@
     type="static_transform_publisher"
     args="0 0.25 0 0 0 0 /world /$(arg robot_name_puppet_left)/base_link"/>
 
-  <node
+  <!-- <node
     name="puppet_right_transform_broadcaster"
     pkg="tf2_ros"
     type="static_transform_publisher"
-    args="0 0.25 0 0 0 0 /world /$(arg robot_name_puppet_right)/base_link"/>
+    args="0 0.25 0 0 0 0 /world /$(arg robot_name_puppet_right)/base_link"/> -->
 
-  <node name="usb_cam_high" pkg="usb_cam" type="usb_cam_node" output="screen" >
+  <!-- <node name="usb_cam_high" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <param name="video_device" value="/dev/CAM_HIGH" />
     <param name="framerate" value="60" />
     <param name="image_width" value="640" />
@@ -98,7 +105,7 @@
     <param name="autofocus" value="false"/>
     <param name="focus" value="5"/>
     <param name="autoexposure" value="true"/>
-  </node>
+  </node> -->
 
   <node name="usb_cam_low" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <param name="video_device" value="/dev/CAM_LOW" />
@@ -126,7 +133,7 @@
     <param name="autoexposure" value="true"/>
   </node>
 
-  <node name="usb_cam_right_wrist" pkg="usb_cam" type="usb_cam_node" output="screen" >
+  <!-- <node name="usb_cam_right_wrist" pkg="usb_cam" type="usb_cam_node" output="screen" >
     <param name="video_device" value="/dev/CAM_RIGHT_WRIST" />
     <param name="framerate" value="60" />
     <param name="image_width" value="640" />
@@ -137,8 +144,6 @@
     <param name="autofocus" value="false"/>
     <param name="focus" value="40"/>
     <param name="autoexposure" value="true"/>
-  </node>
-
-
+  </node> -->
 
 </launch>
