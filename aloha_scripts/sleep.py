@@ -9,6 +9,7 @@ def main():
 
     # all_bots = [puppet_bot_left, puppet_bot_right]
     all_bots = [puppet_bot_left]
+    # all_bots = [puppet_bot_left, master_bot_left]
     for bot in all_bots:
         torque_on(bot)
 
@@ -16,6 +17,7 @@ def main():
     master_sleep_position = (0, -1.1, 1.24, 0, -0.24, 0)
     # move_arms(all_bots, [puppet_sleep_position] * 2, move_time=2)
     move_arms(all_bots, [puppet_sleep_position], move_time=2)
+    # move_arms(all_bots, [puppet_sleep_position, master_sleep_position], move_time=2)
     
 if __name__ == '__main__':
     main()

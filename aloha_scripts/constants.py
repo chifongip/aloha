@@ -1,6 +1,6 @@
 ### Task parameters
 
-DATA_DIR = '/home/ubuntu/interbotix_ws/src/aloha/dataset'
+DATA_DIR = '/home/lscm/interbotix_ws/src/aloha_lscm/aloha/dataset'
 TASK_CONFIGS = {
     'aloha_wear_shoe':{
         'dataset_dir': DATA_DIR + '/aloha_wear_shoe',
@@ -11,6 +11,37 @@ TASK_CONFIGS = {
     'aloha_test':{
         'dataset_dir': DATA_DIR + '/aloha_test',
         'num_episodes': 50,
+        'episode_len': 1000,
+        'camera_names': ['cam_low', 'cam_left_wrist']
+    },
+    'aloha_test_2':{
+        'dataset_dir': DATA_DIR + '/aloha_test_2',
+        'num_episodes': 50,
+        'episode_len': 1000,
+        'camera_names': ['cam_low', 'cam_left_wrist']
+    },
+    'aloha_test_2_compressed':{
+        'dataset_dir': DATA_DIR + '/aloha_test_2_compressed',
+        'num_episodes': 50,
+        'episode_len': 1000,
+        'camera_names': ['cam_low', 'cam_left_wrist']
+    },
+    'aloha_test_3_compressed':{
+        'dataset_dir': DATA_DIR + '/aloha_test_3_compressed',
+        'num_episodes': 50,
+        'episode_len': 400,
+        'camera_names': ['cam_low', 'cam_left_wrist']
+    },
+    'aloha_test_cotrain':{
+        'dataset_dir': [
+            DATA_DIR + '/aloha_test_compressed',
+            DATA_DIR + '/aloha_compressed_dataset',
+        ], # only the first dataset_dir is used for val
+        'stats_dir': [
+            DATA_DIR + '/aloha_test_compressed',
+        ],
+        'sample_weights': [5, 5],
+        'train_ratio': 0.9, # ratio of train data from the first dataset_dir
         'episode_len': 1000,
         'camera_names': ['cam_low', 'cam_left_wrist']
     },
